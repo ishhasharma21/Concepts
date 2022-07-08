@@ -16,4 +16,10 @@
 block of code
 int a = 10;
 ```
+- this is 
+- an unordered 
+- list
 
+1. whereas this
+2. is an 
+3. ordered list
