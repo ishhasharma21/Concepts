@@ -86,7 +86,46 @@ return () : signals the end of function
 
 ![image](https://user-images.githubusercontent.com/107466664/177985280-4fe88cc3-11dc-40d8-b25b-1a1f6388d14c.png)
 
+***!!!!!!!!!!!!READ ABOUT CLASSES, ENUM, UNION, STRUCTURE
+
+![image](https://user-images.githubusercontent.com/107466664/177987115-a145993a-0d67-439d-bacd-4ae960ba68ae.png)
+
+### Overloading & Overriding
 
 
+##Classes
+Group of objects sharing same methods and attributes. 
+> Class specification = declaration + definition
 
+```
+class myClass{
+  private : 
+    int myVar;
+    float floatVar;
+    
+   public : 
+     int pubVar;
+     void myFunction();
+ };
+ ```
+ Private data cannot be accessed from outside the class. However, we can use getters and setters functions in the public section and have them access private data of the class. We can then access these getters and setters from anywhere outside the class. 
+ 
+ *Form of encapsulation*
+ 
+ ```
+ class getterSetter{
+   private : 
+     int x;
+     
+    public : 
+      void getX(int s){
+          x = s;
+       } 
+       
+       int putX(){
+          return x;
+       }
+  };
+  
+  ```
  
