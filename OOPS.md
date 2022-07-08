@@ -31,6 +31,25 @@ Believes in **modularizing** programs by creating **partitioned memory spaces** 
 - Objects communicate using functions
 
 
+## Basic Concepts of OOPS **
+**Objects**
+>Basic runtime entities in OOPS
+Both functions and attributes are combined to form objects.
+```
+Object : Isha 
+Attributes : Age = 21, Height = 160
+Methods : calculateSalary()
+```
+
+**Classes**
+**Abstraction**
+**Encapsulation**
+**Inheritance**
+**Polymorphism**
+**Dynamic Binding**
+**Message Passing**
+
+
 
 
  
