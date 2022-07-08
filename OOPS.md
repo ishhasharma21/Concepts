@@ -129,3 +129,28 @@ class myClass{
   
   ```
  
+-Private : only within class
+-Protected : self + inherited classes
+-Public : anywhere
+
+### Defining member functions outside class
+Use *scope resolution* operator ::
+
+```
+class test{
+   private : 
+     int pvtVar;
+     
+   public :
+     void getData(int assignVar);
+     int putData;
+ };
+ 
+ void test :: getData(int assignVar){
+    pvtVar = assignVar;
+ }
+ 
+ int putData(){
+   return pvtVar;
+ }
+ ```
