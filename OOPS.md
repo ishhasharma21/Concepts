@@ -62,8 +62,30 @@ Methods : calculateSalary()
 > research and put
 
 ***BENEFITS & APPLICATIONS OF OOPS***
+
 ![image](https://user-images.githubusercontent.com/107466664/177982873-8c60a380-bf4d-4e15-a68c-6ee011ece989.png)
 ![image](https://user-images.githubusercontent.com/107466664/177983082-c804f874-cfd3-4c34-b88d-f3d7efbe8f12.png)
+
+In a normal C++ program 
+```
+#include<iostrem> : preprocessor directive telling compiler to include these header files*
+using namespace std : all elements of C++ are linked with standard namespace. So declare it once else we'll have to keep using scope resolution operator
+int main() : execution starts here 
+return () : signals the end of function
+```
+
+**TOKENS**
+- Keywords (reserved words)
+- Identifiers (variable / method names)
+- String 
+- Constants
+- Operators
+
+
+![image](https://user-images.githubusercontent.com/107466664/177984825-0144a1cc-562d-451d-b049-b7e7c048608d.png)
+
+![image](https://user-images.githubusercontent.com/107466664/177985280-4fe88cc3-11dc-40d8-b25b-1a1f6388d14c.png)
+
 
 
 
