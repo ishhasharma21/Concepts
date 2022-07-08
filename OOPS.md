@@ -61,6 +61,10 @@ Methods : calculateSalary()
 **Message Passing**
 > research and put
 
+***BENEFITS & APPLICATIONS OF OOPS***
+![image](https://user-images.githubusercontent.com/107466664/177982873-8c60a380-bf4d-4e15-a68c-6ee011ece989.png)
+![image](https://user-images.githubusercontent.com/107466664/177983082-c804f874-cfd3-4c34-b88d-f3d7efbe8f12.png)
+
 
 
  
