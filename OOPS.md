@@ -33,8 +33,7 @@ Believes in **modularizing** programs by creating **partitioned memory spaces** 
 
 ## Basic Concepts of OOPS **
 **Objects**
->Basic runtime entities in OOPS
-Both functions and attributes are combined to form objects.
+>Basic runtime entities in OOPS. Both functions and attributes are combined to form objects.
 ```
 Object : Isha 
 Attributes : Age = 21, Height = 160
@@ -42,13 +41,21 @@ Methods : calculateSalary()
 ```
 
 **Classes**
+> Group of objects. Contain member methods and attributes. 
+ 
 **Abstraction**
-**Encapsulation**
-**Inheritance**
-**Polymorphism**
-**Dynamic Binding**
-**Message Passing**
+> Reveal only essential features and conceal things not needed by the user. Data binding and data hiding.
 
+**Encapsulation**
+> Wrapping of methods & attributes into a class / structure. Data isn't accessible to the outside world
+**Inheritance**
+> Class components acquire properties of other classes. Provides reusability. Can add new features without modifying existing ones. 
+**Polymorphism**
+> Runtime (Overriding) & Compile time (Overloading)
+**Dynamic Binding**
+> research and put
+**Message Passing**
+> research and put
 
 
 
