@@ -1,7 +1,10 @@
 # Important Theory Questions
 
-###Difference between abstract classes and interfaces
-In C++, a class becomes abstract if it has even one *pure - virtual function*. In java, *abstract* keyword is needed. We can have abstract classes and methods but not varibales. 
+### Difference between abstract classes and interfaces
+
+***ABSTRACT CLASSES***
+
+In C++, a class becomes abstract if it has even one *pure - virtual function*. Virtual functions are equivalent to abstract classes. In java, *abstract* keyword is needed. We can have abstract classes and methods but not varibales. 
 ```
 abstract class Colour{
     public : 
@@ -53,4 +56,15 @@ abstract class Colour{
 
   - The class **HAS** to be decalred abstract if it consists of even a single abstract method.
   - Child classes have to **compulsorily** implement abstract methods.
-  - 
+  
+  
+***INTERFACES***
+In Java, a mechanism to achieve abstraction. 
+- only method declaration, no definition
+- blueprint of class (what should a class do, not how)
+- methods are abstract by default
+- all methods **must** be implemented
+- cannot instantiate 
+
+![image](https://user-images.githubusercontent.com/107466664/178102756-e077702b-9d3b-476a-9ee0-dd68eba745e9.png)
+
