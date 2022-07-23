@@ -2,6 +2,8 @@
 
 ## 1. Concepts of Process & Threads
 *Process is a program in execution. Thread is a segment of a process.* Programs with are dispatched from ready state & scheduled to execute are processes. 
+
+
 https://www.geeksforgeeks.org/difference-between-process-and-thread/
 
 
@@ -12,10 +14,28 @@ Process Scheduling is the process of the process manager handling the removal of
 
 **Context switching is swapping programs in and out of CPU**. CPU scheduling is the process of deciding which process will own the CPU to use while another process is suspended.
 
-![image](https://user-images.githubusercontent.com/107466664/180600620-8375db2f-8d59-4a46-9899-b464475e6867.png)
+**Objectives of Process Scheduling Algorithm:**
+
+- Utilization of CPU at maximum level. Keep CPU as busy as possible. 
+- Allocation of CPU should be fair. 
+- Throughput should be Maximum. i.e. Number of processes that complete their
+execution per time unit should be maximized. Minimum turnaround time, i.e. time taken by a process to finish execution should be
+the least. 
+- There should be a minimum waiting time and the process should not starve in the
+ready queue. 
+- Minimum response time. It means that the time when a process produces the first
+response should be as less as possible.
 
 
-![image](https://user-images.githubusercontent.com/107466664/180600705-66da7a8a-13f1-4f74-bfb6-e0b531773bfd.png)
+- Arrival Time: Time at which the process arrives in the ready queue. -
+-  Completion Time: Time at which process completes its execution. 
+-  Burst Time: Time required by a process for CPU execution. 
+-  Turn Around Time: Time Difference between completion time and arrival time.
+ > Turn Around Time = Completion Time - Arrival Time
+
+
+- Waiting Time (W.T): Time Difference between turn around time and burst time.
+ > Waiting Time = Turn Around Time - Burst Time
 
 ***Read Scheduling algorithms *** 
 
@@ -64,7 +84,18 @@ resource, the chronology becomes very important to determine what is correct and
 - Can be accessed by only 1 process at a time. 
 - Critical section problem means a way of synchronizing the process to share resources and memory spaces without creating data inconsistencies. 
 
-![image](https://user-images.githubusercontent.com/107466664/180603427-208f044b-89c2-47c1-8d4e-c143746bef42.png)
+```
+do {
+	entry section 
+	
+		//critical section
+		
+	exit section
+		
+		remainder section
+} 
+while (true)
+```
 
 
 In the entry section, the process requests for entry in the Critical Section.
@@ -96,7 +127,8 @@ signal(int S){
 }
 ```
 
-![image](https://user-images.githubusercontent.com/107466664/180604023-44f3a79c-c1d0-40dd-9012-139fb73324e2.png)
+- *Counting Semaphores* : unrestricted domain | used to count resources 
+- *Binary Semaphores* : 0 and 1 | usually signals if you can access critical section or not
 
 Binary Semaphores = Mutex Locks
 
@@ -114,7 +146,9 @@ Binary Semaphores = Mutex Locks
 
 Reader - Writer & Producer - Consumer problems can be solved using semaphores.
 
-![image](https://user-images.githubusercontent.com/107466664/180604350-26c4a22a-d44f-47b1-a4eb-f556634c333d.png)
+https://user-images.githubusercontent.com/107466664/180604350-26c4a22a-d44f-47b1-a4eb-f556634c333d.png
+
+
 
 
 ## 8. Classical Problems in Concurrent programming 
@@ -286,10 +320,10 @@ The header part is used for storing message type, destination id, source id, mes
 ## 12. Deadlock (detection, prevention, recovery, avoidance)
 **DETECTION** using a resource allocation graph & Allocation Matrix
 
-![image](https://user-images.githubusercontent.com/107466664/180607471-3f56150c-ee33-408b-9b17-7d80b01059bf.png)
+https://user-images.githubusercontent.com/107466664/180607471-3f56150c-ee33-408b-9b17-7d80b01059bf.png
 
 
-![image](https://user-images.githubusercontent.com/107466664/180607488-023d94d9-0bd5-45b0-935f-bcfd841e1ca5.png)
+https://user-images.githubusercontent.com/107466664/180607488-023d94d9-0bd5-45b0-935f-bcfd841e1ca5.png
 
 **PREVENTION**
 Can be prevented by eliminating any of the 4 given conditions : 
