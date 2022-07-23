@@ -354,9 +354,120 @@ using :
 - Shared Memory 
 
 ## 16. Memory management  
+
+Kind of method / functionality to manage various kinds of memory. How can we have an efficient utilisation of memory? 
+
+- CPU is directly connected to cache, registers and RAM. 
+- Secondary memory is way slower than all the above memory spaces. 
+- However, increasing spaces for the main memory will increase the cost of systems exponentially. 
+- CPU cannot execute processes in the secondary memory, they have to come in the RAM.
+- Degree of multiprogramming : when you fetch programs from secondary to main memory (RAM), try to fetch multiple programs instead of one. 
+- Multiprogramming directly proportional to utilisation of CPU
+- Every process has 
+	a) CPU time request
+	b) I / O operations.
+  In cases of I/O operations, processes get blocked and come back when they need CPU space. Till then, other processes are executed. 
+ 
+ ```
+ CPU Utilisation = 1 - K <sup>no. of processes </sup>
+ RAM = 4 mb
+ Process = 4 mb
+ No of processes = RAM / Process Size
+ 		 = 4 / 4 
+		 = 1
+		 
+ I/O operations (K) = 70 % 
+ Thus Utilisation = 1 - K 
+ 		  = 30 % 
+		  
+if RAM = 16 mb, 
+no. processes = 16 / 4
+	      = 4
+	      
+Thus, Utilisation = 1 - K<sup>4</sup>
+		  = 93 %
+```
+   
 ## 17. Memory partitioning 
+
+### Fixed Size Partitioning
+
+https://www.youtube.com/watch?v=bK-VhQA512c
+
+
+- IMPORTANT : CONTIGUOUS MEMORY ALLOCATION ONLY
+- no. of partitions are fixed. 
+- size of the partitions may or may not be the same. 
+- OS is always the first process loaded into the RAM
+- Spanning is not allowed
+- Spanning = some part of process in one partition and the rest in other.
+
+**DISADVANTAGES**
+1. Internal Fragmentation 
+2. Cannot accomodate processes with sizes bigger than maximum partitionn size
+3. Degree of multiprogramming is affected since fixed number of partitions and no spanning
+4. External Fragmentation
+
+***Internal Fragmentation***
+When a smaller process (eg : 2 mb) is fit into a bigger partition (eg : 4 mb), the 2 mb space remaining is the internal fragmentation. The wastage due to not fitting 
+of processes. 
+
+***External Fragmentation***
+Although the sum of all internal fragmentation >= new process size, we still cannot accomodate it due to contiguous allocation constraint. 
+
+
+### Variable Size Partitioning
+
+https://www.youtube.com/watch?v=JdPmsrYqRDY
+
+Creating partitions at the runtime and not before. 
+
+**All disadvantages except EXTERNAL FRAGMENTATION of fixed size partitioning are solved here and makes it their advantage**
+
+**Disadvantage**
+1. Holes. If a process is completed and swapped out, we have a hole of that much space i.e. external fragmentation
+2. Can use compaction (free memory differentiated from used up spaces). This leads to the problem of having to suspend already running processes. Since the process
+   will have to be copied and moved to another address space. 
+ 3. Compaction is also time consuming (imagine having to move millions of bytes to another address space)
+
+
+### Memory Allocation Methods 
+Allocation to holes 
+
+https://www.youtube.com/watch?v=N3rG_1CEQkQ
+
+
+***First Fit***
+- First big enough location to fit the process.
+ - Simple & Fast
+- weird shaped holes  
+
+***Next Fit***
+- Keep a pointer onn the previously allocated hole. Start searching first fit wise from the previously allocated hole. 
+- faster than first fit
+- internal fragmentation
+
+***Best Fit***
+- Traverse entire list and pick the one with least internal fragmentation.
+- very less internal fragmentation individually
+- but these tiny holes will be useless in accommodating more processes.
+- traverses entire list, so slow
+
+***Worst Fit***
+- Traverse entire list to find the one with most internal fragmentation.
+- slower since entire list has to be traversed
+- holes big enough to fit in other processes
+
+
 ## 18. Memory Swapping 
+
+Swap from main memory -> secondary memory & from secondary memory -> main memory TEMPORARILY.
+If a main memory process need to go for I/O wait, it will be swapped out to secondary memory and another process will be swapped in in its place. After the I/O
+wait, it will get swapped in from the secondary memory to the main memory.
+
 ## 19. Contiguous memory allocation
+The enitre process together or nothing at all. Non - contiguous has process divivded into segments which can be stored seperately. 
+
 ## 20. Paging with segmentation
 ## 21. Segmentation with paging 
 ## 22. Process creation 
