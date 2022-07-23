@@ -162,8 +162,91 @@ while (true)
 
 
 ### Sleeping barber problem
+There is a barber shop which has one barber, one barber chair, and n chairs for waiting for customers if there are any to sit on the chair.
+
+If there is no customer, then the barber sleeps in his own chair.
+When a customer arrives, he has to wake up the barber.
+If there are many customers and the barber is cutting a customer’s hair, then the remaining customers either wait if there are empty chairs in the waiting room or they leave if no chairs are empty.
+
+```
+Semaphore Customers = 0;
+Semaphore Barber = 0;
+Mutex Seats = 1;
+int FreeSeats = N;
+
+Barber {
+	while(true) {
+			/* waits for a customer (sleeps). */
+			down(Customers);
+
+			/* mutex to protect the number of available seats.*/
+			down(Seats);
+
+			/* a chair gets free.*/
+			FreeSeats++;
+			
+			/* bring customer for haircut.*/
+			up(Barber);
+			
+			/* release the mutex on the chair.*/
+			up(Seats);
+			/* barber is cutting hair.*/
+	}
+}
+
+Customer {
+	while(true) {
+			/* protects seats so only 1 customer tries to sit
+			in a chair if that's the case.*/
+			down(Seats); //This line should not be here.
+			if(FreeSeats > 0) {
+				
+				/* sitting down.*/
+				FreeSeats--;
+				
+				/* notify the barber. */
+				up(Customers);
+				
+				/* release the lock */
+				up(Seats);
+				
+				/* wait in the waiting room if barber is busy. */
+				down(Barber);
+				// customer is having hair cut
+			} else {
+				/* release the lock */
+				up(Seats);
+				// customer leaves
+			}
+	}
+}
+```
+
+
 ### Dining Philosophers problem
+
+The Dining Philosopher Problem states that K philosophers seated around a circular table with one chopstick between each pair of philosophers. There is one chopstick between each philosopher. A philosopher may eat if he can pick up the two chopsticks adjacent to him. One chopstick may be picked up by any one of its adjacent followers but not both. 
+
+```
+process P[i]
+ while true do
+   {  THINK;
+      PICKUP(CHOPSTICK[i], CHOPSTICK[i+1 mod 5]);
+      EAT;
+      PUTDOWN(CHOPSTICK[i], CHOPSTICK[i+1 mod 5])
+   }
+```
+
+
 ### Readers and writers problem
+
+The readers-writers problem relates to an object such as a file that is shared between multiple processes. Some of these processes are readers i.e. they only want to read the data from the object and some of the processes are writers i.e. they want to write into the object.
+
+The readers-writers problem is used to manage synchronization so that there are no problems with the object data. For example - If two readers access the object at the same time there is no problem. However if two writers or a reader and writer access the object at the same time, there may be problems.
+
+To solve this situation, a writer should get exclusive access to an object i.e. when a writer is accessing the object, no reader or writer may access it. However, multiple readers can access the object at the same time.
+
+This can be implemented using semaphores. 
 
 
 ## 9. Critical Regions 
@@ -172,6 +255,14 @@ while (true)
 
 ## 12. Deadlock (detection, prevention, recovery, avoidance)
 ## 13. Inter Process Communication
+
+https://www.geeksforgeeks.org/inter-process-communication-ipc/
+
+Sometimes dependency of processes (execution of one process affects the other) will increase the efficiency and moduarity of programs. These processes communicate 
+using : 
+- Message Passing 
+- Shared Memory 
+
 ## 16. Memory management  
 ## 17. Memory partitioning 
 ## 18. Memory Swapping 
