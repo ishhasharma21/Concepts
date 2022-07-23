@@ -4,6 +4,7 @@
 *Process is a program in execution. Thread is a segment of a process.* Programs with are dispatched from ready state & scheduled to execute are processes. 
 https://www.geeksforgeeks.org/difference-between-process-and-thread/
 
+
 ## 2. CPU Scheduler & Scheduling algorithms
 CPU Scheduling is a process that allows one process to use the CPU while another process is delayed (in standby) due to unavailability of any resources such as I / O etc, thus making full use of the CPU. The purpose of CPU Scheduling is to make the system more efficient, faster, and fairer.
 
@@ -41,6 +42,8 @@ If short term scheduler messes up and selects a bad process, all other processes
 > Running -> Ready / Blocked State. 
 Swap from main memory to secondary memory. 
 
+
+
 ## 3. Principles of Concurrency WATCH VIDEOO!!!!!!!!!!!!!!!!!!!!!!!!
 
 > Execution of multiple instruction sets at the same time. 
@@ -48,6 +51,7 @@ Swap from main memory to secondary memory.
 - When several process threads are running in parallel. 
 - Communication between them happens through shared memory space or message passing. 
 - It helps in techniques like coordinating execution of processes, memory allocation and execution scheduling for maximizing throughput. 
+
 
 
 ## 4. Race Condition 
@@ -71,28 +75,110 @@ Any solution to the critical section problem must satisfy three requirements:
 - **Progress**: If no process is executing in the critical section and other processes are waiting outside the critical section, then only those processes that are not executing in their remainder section can participate in deciding which will enter in the critical section next, and the selection can not be postponed indefinitely.
 - **Bounded Waiting**: A bound must exist on the number of times that other processes are allowed to enter their critical sections after a process has made a request to enter its critical section and before that request is granted.
 
-## 5. Mutual Exclusion 
+## 5. Mutual Exclusion (Mutex)
 
 The primary task of OS is to get rid of race conditions. This is done using Mutual Exlusion. No 2 processes should enter their critical section at the same time.
-Critical Section is when they access a shared memory space.
+Critical Section is when they access a shared memory space. 
+
 
 ## 6. Semaphores
+Semaphores are integer variables within threads which are used to solve the critical section problem using *wait* and *signal* operations. 
+"Wait" operation decrements integer value wheareas "signal" increments it. 
+
+```
+wait(int S) {
+    while(S >= 0)
+        S --;
+}
+
+signal(int S){
+    S ++; 
+}
+```
+
+![image](https://user-images.githubusercontent.com/107466664/180604023-44f3a79c-c1d0-40dd-9012-139fb73324e2.png)
+
+Binary Semaphores = Mutex Locks
+
+
+**Advantages**
+- Easily ensures no 2 processes being in the critical section. 
+- machine independent, since code is also machine independent.
+
+**Disadvantages**
+- Lower priority process can access over a higher priority process
+- Complicated, must be implemented with care and alertness
+- Their use leads to loss  in modularity
+
 ## 7. Implementation of Semaphore 
+
+Reader - Writer & Producer - Consumer problems can be solved using semaphores.
+
+![image](https://user-images.githubusercontent.com/107466664/180604350-26c4a22a-d44f-47b1-a4eb-f556634c333d.png)
+
+
 ## 8. Classical Problems in Concurrent programming 
+The classical problems of synchronization are as follows:
+
+### Producer Consumer problem
+We have a buffer of fixed size. A producer can produce an item and can place in the buffer. A consumer can pick items and can consume them. We need to ensure that when a producer is placing an item in the buffer, then at the same time consumer should not consume any item. In this problem, **buffer is the critical section.**
+
+To solve this problem, we need two counting semaphores – Full and Empty. “Full” keeps track of number of items in the buffer at any given time and “Empty” keeps track of number of unoccupied slots. 
+
+PRODUCER 
+
+```
+do {
+  //placing an item in buffer
+  wait (mutex);
+  wait (empty);            // reduce  the number of empty buffer
+  
+  //out of critical section
+  signal (mutex);
+  signal (full);           // increase the number of full buffer
+ }
+ while (true)
+ 
+```
+
+Mutex = 1 : Critical Section can be accessed
+Mutex = 0 : Cannot be accessed 
+
+CONSUMER 
+
+```
+do {
+   //consuming an item from buffer
+   wait (mutex);
+   wait (full);
+   
+   // out of critical section 
+   signal (mutex); 
+   signal (full);
+  }
+while (true)
+```
+
+
+
+### Sleeping barber problem
+### Dining Philosophers problem
+### Readers and writers problem
+
+
 ## 9. Critical Regions 
 ## 10. Monitors & Deadlocks 
-## Message Passing 
-## Readers and Writers problems
-## Producer & Consumer problem 
-## Deadlock (detection, prevention, recovery, avoidance)
-## Dining Philosophers problem 
-## Memory management  
-## Memory partitioning 
-## Memory Swapping 
-## Contiguous memory allocation
-## Paging with segmentation
-## Segmentation with paging 
-## Process creation 
-## Page replacement algorithms 
-## Allocation of frames
-## Disk Scheduling 
+## 11. Message Passing 
+
+## 12. Deadlock (detection, prevention, recovery, avoidance)
+## 13. Inter Process Communication
+## 16. Memory management  
+## 17. Memory partitioning 
+## 18. Memory Swapping 
+## 19. Contiguous memory allocation
+## 20. Paging with segmentation
+## 21. Segmentation with paging 
+## 22. Process creation 
+## 23. Page replacement algorithms 
+## 24. Allocation of frames
+## 25. Disk Scheduling 
