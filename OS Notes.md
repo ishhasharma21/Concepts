@@ -250,10 +250,66 @@ This can be implemented using semaphores.
 
 
 ## 9. Critical Regions 
+
+When one or more processes aaccess the same shared resource, it is the critical region. Group of code here needs to be executed ATOMICALLY. 
+
+> Atmocity is unbreakability i.e. an uninterrupted option. 
+
+
 ## 10. Monitors & Deadlocks 
-## 11. Message Passing 
+
+Deadlock is when a set of processes are blocked because every process is holding some resource and waitinng for others. 
+
+**4 necessary conditions**
+- Mutal Exclusion (resource cannot be shared by multiple processes)
+- Hold and Wait (of resources)
+- No Preemption (cannot be taken away forcefully)
+- Circular Wait (can make a circular diagram)
+
+
+
+## 11. Message Passing WATCH VIDEOOOOOOOOOOOOOOOOOOOOOOO !!!!!!!!!!!!!!!!!!!!
+
+In this method, processes communicate with each other without using any kind of shared memory. If two processes p1 and p2 want to communicate with each other, they proceed as follows:
+ 
+
+Establish a communication link (if a link already exists, no need to establish it again.)
+1. Start exchanging messages using basic primitives.
+2. We need at least two primitives: 
+– send(message, destination) or send(message) 
+– receive(message, host) or receive(message)
+
+The header part is used for storing message type, destination id, source id, message length, and control information. The control information contains information like what to do if runs out of buffer space, sequence number, priority. Generally, message is sent using FIFO style.
+
+
 
 ## 12. Deadlock (detection, prevention, recovery, avoidance)
+**DETECTION** using a resource allocation graph & Allocation Matrix
+
+![image](https://user-images.githubusercontent.com/107466664/180607471-3f56150c-ee33-408b-9b17-7d80b01059bf.png)
+
+
+![image](https://user-images.githubusercontent.com/107466664/180607488-023d94d9-0bd5-45b0-935f-bcfd841e1ca5.png)
+
+**PREVENTION**
+Can be prevented by eliminating any of the 4 given conditions : 
+- Mutual Exclusion
+- Hold & Wait
+- Circular Wait
+- No Preemption
+
+https://www.geeksforgeeks.org/deadlock-prevention/
+
+**RECOVERY**
+- Preempt resources
+- Rollback to safe state
+- Kill a process 
+- Kill all processes
+
+**AVOIDANCE**
+Banker's algorithm
+> Bankers’s Algorithm is resource allocation and deadlock avoidance algorithm which test all the request made by processes for resources, it checks for the safe state, if after granting request system remains in the safe state it allows the request and if there is no safe state it doesn’t allow the request made by the process.
+
 ## 13. Inter Process Communication
 
 https://www.geeksforgeeks.org/inter-process-communication-ipc/
