@@ -468,7 +468,25 @@ wait, it will get swapped in from the secondary memory to the main memory.
 ## 19. Contiguous memory allocation
 The enitre process together or nothing at all. Non - contiguous has process divivded into segments which can be stored seperately. 
 
-## 20. Paging with segmentation
+## 20. Paging
+
+https://www.youtube.com/watch?v=6c-mOFZwP_8
+
+- Dividing a process into equal sized pages and loading into the frames of main memory. 
+- Main memory is divided into frames
+- Frame Size == Page Size (MANDATORY)
+- Mapping needed to correlate process bytes to frame address space. 
+- **Memory Management Unit = converts CPU generated address to actual absolute address**
+
+For eg : in the video at 8:31, we have a 4 byte process (0 1 2 3) and a 16 byte RAM (0 - 15). 
+
+Frame size = page size = 2 byte
+
+CPU calls for byte number 3, if that portion is present in frame byte 9, MMU has to map and give the absolute address space. 
+
+
+
+
 ## 21. Segmentation with paging 
 ## 22. Process creation 
 ## 23. Page replacement algorithms 
