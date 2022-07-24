@@ -470,6 +470,9 @@ The enitre process together or nothing at all. Non - contiguous has process divi
 
 ## 20. Paging
 
+> Need paging to eliminate internal & external fragmengtation altogether. If you divide a process into pages, you know it is going to exactly fit into the 
+main memory since page size = frame size. 
+
 https://www.youtube.com/watch?v=6c-mOFZwP_8
 
 - Dividing a process into equal sized pages and loading into the frames of main memory. 
@@ -482,13 +485,111 @@ For eg : in the video at 8:31, we have a 4 byte process (0 1 2 3) and a 16 byte 
 
 Frame size = page size = 2 byte
 
-CPU calls for byte number 3, if that portion is present in frame byte 9, MMU has to map and give the absolute address space. 
+CPU calls for byte number 3, if that portion is present in frame byte 9, MMU has to map and give the absolute address space. Page table is generated which gives the 
+page byte requested by the CPU and its corresponding absolute address present in the RAM. 
+
+**Every process has its own page table**
+- Page table entries = number of pages
+- Page table consists of page number and corresponding frame number
+- CPU ALWAYS WORKS ON LOGICAL ADDRESS (page number + page offset)
+- Physical Address is the main memory representation (frame number + frame offset)
+- Both Logical address and Physical Address sizes = no. of bits required to represent sizes of page & RAM. If RAM is 16 byte, we need 4 bits to represent from 0 - 15. 
+- Similarly, if page size is 2 byte, we need only 1 bit to represent either 0 or 1. 
+- understand below picture closely
+- If doubts in this, watch the video from 18:50
+
+
+https://user-images.githubusercontent.com/107466664/180632825-1de63efc-0a01-44d4-bb50-66c9f7c3c870.png
 
 
 
 
-## 21. Segmentation with paging 
-## 22. Process creation 
+
+
+## 21. Segmentation
+
+https://www.youtube.com/watch?v=dz9Tk6KCMlQ
+
+> Paging divides process into partitions without considering method lengths. If add() function is divided into two frames, both frames will have to be loaded into the 
+ RAM to ensure proper execution. 
+ 
+ *Page fault arises when a particular page is wanted but not found.*
+ 
+ - Segments can be of variable sizes since they are methods.
+ - main(), add(), subtract(), stack() will all be different segments
+ - Memory Management Unit (MMU) is present here as well to convert logical address to physical address
+ - We know CPU always requests logical addresses which have to be transformed into physical address to know their exact location in the memory.
+ - We have a segment table here instead of page table consisting of Base Address & Size
+ - Traps generated when requested segment size > stored segment size
+ - To uderstand how segment table is used to map, play the video from 9:50
+
+https://user-images.githubusercontent.com/107466664/180633436-ede28461-f65c-4d23-a3b1-998d2b57f16d.png
+
+
+## 22. Virtual Memory
+
+https://www.youtube.com/watch?v=o2_iCzS9-ZQ
+
+- A concept giving illusion to the programmer saying a process with size larger than main memory can also be executed. 
+- Not the entire process is loaded, just a few pages
+- Degree of multiprogramming is increased since we can have pages of multiple processes
+- Swap in & Swap out used extensively
+- Page fault when required page not present in main memory 
+- if trap generated, control switches from user to OS
+- trap i.e. interrupt when page fault occurs or CPU requests more readable size than a particular segment size
+
+
 ## 23. Page replacement algorithms 
-## 24. Allocation of frames
-## 25. Disk Scheduling 
+For swapping pages in and out of the virtual memory. Following algorithms : 
+1. FIFO
+2. LRU (Least Recently Used)
+	- Swap out the page which hasn't been used in a long time
+4. Optimal Page Replacement Algorithm
+	- Select the farthest page and swap it out 
+
+## 24. Paging with Segmentation (Watch Video, incompletely understood)
+
+https://www.youtube.com/watch?v=YSKj28LmL4E
+
+Even with segmentation, we had the following disadvantages : 
+- Costly memory management
+- External Fragmentation
+- Thus, memory not being properly utilized
+- Swapping of processes is not easy
+
+
+**Divide each segment into pages and allocate those pages to the main memory frames**
+This means we can store segments in non contiguous manner. 
+	
+## 25. Allocation of frames
+
+https://www.youtube.com/watch?v=B5i-IAuYO6g
+
+## 26. Disk Scheduling 
+
+https://www.youtube.com/watch?v=dEt7mr9R_Z8
+
+## 27. Process creation 
+
+- Fork() system call is used to create a child process. 
+- If parent process is busy, it creates an exact clone of itself called the child process to do the job
+- Child process has its own identity too
+- In Fork(), 0 = Child process & 1 = Parent process
+
+```
+main(){
+	fork();
+	cout<<"hello";
+}
+```
+
+Output of this program will be printing "hello" twice. One with the parent process and one with the child process. Similarly, if we had 2 fork() calls, we would have got 4 processes. 
+
+```
+Parent -> parent and child 1
+child 1 -> child 1 & child 2
+
+Thus, hello x4
+```
+
+https://user-images.githubusercontent.com/107466664/180634626-a95c2d92-a105-44f2-bb75-3503ca809ca4.png
